@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Country Boundaries Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 800px;
+            width: 100%;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+    <script src="dataManager.js"></script>
+</head>
+<body>
+    <div class="controls">
+        <input type="number" id="yearInput" value="2000" min="1946" max="2016">
+        <input type="text" id="searchInput" placeholder="Search country...">
+        <button onclick="updateMap()">Update Map</button>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="loading" id="loading">
+        Loading data...
+    </div>
+    
+    <div class="legend">
+        <h4>Legend</h4>
+        <div>Country Borders: White lines</div>
+        <div>Click on country for details</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        let countryLayer;
+        
+        const dataManager = new DataManager();
+        
+        async function loadData() {
+            return await dataManager.getData();
+        }
+
+        function filterByYear(data, year) {
+            return {
+                type: data.type,
+                features: data.features.filter(feature => 
+                    feature.properties.gwsyear <= year && 
+                    feature.properties.gweyear > year
+                )
+            };
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function style(feature) {
+            return {
+                fillColor: getRandomColor(),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: 0.7
+            };
+        }
+
+        function onEachFeature(feature, layer) {
+            if (feature.properties && feature.properties.cntry_name) {
+                layer.bindPopup(`
+                    <strong>Country:</strong> ${feature.properties.cntry_name}<br>
+                    <strong>Start Year:</strong> ${feature.properties.gwsyear}<br>
+                    <strong>End Year:</strong> ${feature.properties.gweyear}
+                `);
+            }
+        }
+
+        async function updateMap() {
+            const year = parseInt(document.getElementById('yearInput').value);
+            const data = await loadData();
+            if (!data) return; // Добавляем проверку
+            
+            const filteredData = filterByYear(data, year);
+            console.log('Filtered data:', filteredData); // Добавляем отладочный вывод
+
+            if (countryLayer) {
+                map.removeLayer(countryLayer);
+            }
+
+            countryLayer = L.geoJSON(filteredData, {
+                style: style,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
+            if (filteredData.features && filteredData.features.length > 0) {
+                map.fitBounds(countryLayer.getBounds());
+            } else {
+                console.log('No features found for year:', year);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase();
+            if (countryLayer) {
+                countryLayer.eachLayer(layer => {
+                    const countryName = layer.feature.properties.cntry_name.toLowerCase();
+                    if (countryName.includes(searchText)) {
+                        layer.setStyle({
+                            weight: 4,
+                            color: '#ff0000'
+                        });
+                    } else {
+                        layer.setStyle(style(layer.feature));
+                    }
+                });
+            }
+        });
+
+        // Initial load
+        updateMap();
+    </script>
+</body>
+</html>
