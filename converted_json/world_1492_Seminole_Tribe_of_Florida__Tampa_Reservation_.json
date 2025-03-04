@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Seminole Tribe of Florida (Tampa Reservation)",
+        "gwsdate": "1492-01-01T00:00:00",
+        "gwsyear": 1492,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1500-01-01T00:00:00",
+        "gweyear": 1500,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -82.373044,
+                27.996107
+              ],
+              [
+                -82.369208,
+                27.996148
+              ],
+              [
+                -82.369044,
+                27.994486
+              ],
+              [
+                -82.368714,
+                27.993676
+              ],
+              [
+                -82.372879,
+                27.990393
+              ],
+              [
+                -82.37302,
+                27.992242
+              ],
+              [
+                -82.373044,
+                27.996107
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

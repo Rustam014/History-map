@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Islamic and Hindu states",
+        "gwsdate": "1530-01-01T00:00:00",
+        "gwsyear": 1530,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1600-01-01T00:00:00",
+        "gweyear": 1600,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                73.39573464248812,
+                16.6164075182339
+              ],
+              [
+                73.18471275460497,
+                17.51732606174848
+              ],
+              [
+                73.40928939303515,
+                16.558538042024416
+              ],
+              [
+                73.39573464248812,
+                16.6164075182339
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

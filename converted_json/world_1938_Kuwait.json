@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Kuwait",
+        "gwsdate": "1938-01-01T00:00:00",
+        "gwsyear": 1938,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1945-01-01T00:00:00",
+        "gweyear": 1945,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                46.509158167449215,
+                28.97005232425098
+              ],
+              [
+                47.25528243502734,
+                28.853646837190432
+              ],
+              [
+                47.2040116905677,
+                28.861645767449268
+              ],
+              [
+                46.509158167449215,
+                28.97005232425098
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

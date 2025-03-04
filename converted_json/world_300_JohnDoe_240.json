@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "JohnDoe_240",
+        "gwsdate": "300-01-01T00:00:00",
+        "gwsyear": 300,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "400-01-01T00:00:00",
+        "gweyear": 400,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -77.93164440000001,
+                43.3583385
+              ],
+              [
+                -77.84575660000002,
+                43.34975295
+              ],
+              [
+                -77.699754775,
+                43.299572775
+              ],
+              [
+                -77.84575660000002,
+                43.34975295
+              ],
+              [
+                -77.93164440000001,
+                43.3583385
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

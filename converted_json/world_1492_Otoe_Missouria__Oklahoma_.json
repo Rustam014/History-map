@@ -1,0 +1,52 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Otoe-Missouria (Oklahoma)",
+        "gwsdate": "1492-01-01T00:00:00",
+        "gwsyear": 1492,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1500-01-01T00:00:00",
+        "gweyear": 1500,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -97.04023,
+                36.982136
+              ],
+              [
+                -97.061809,
+                36.983477
+              ],
+              [
+                -97.069421,
+                36.991273
+              ],
+              [
+                -97.069042,
+                36.998995
+              ],
+              [
+                -97.047718,
+                36.99898
+              ],
+              [
+                -97.04023,
+                36.982136
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

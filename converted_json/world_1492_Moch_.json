@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Mochó",
+        "gwsdate": "1492-01-01T00:00:00",
+        "gwsyear": 1492,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1500-01-01T00:00:00",
+        "gweyear": 1500,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -92.260437,
+                15.428529
+              ],
+              [
+                -92.164306,
+                15.412643
+              ],
+              [
+                -92.195892,
+                15.310677
+              ],
+              [
+                -92.293396,
+                15.331869
+              ],
+              [
+                -92.260437,
+                15.428529
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

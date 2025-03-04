@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Tuareg Nomadic Tribes",
+        "gwsdate": "1200-01-01T00:00:00",
+        "gwsyear": 1200,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1279-01-01T00:00:00",
+        "gweyear": 1279,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                0.457803183031373,
+                32.54744071220753
+              ],
+              [
+                1.440658443488291,
+                32.60715939039891
+              ],
+              [
+                0.45780318303137,
+                32.547440712207525
+              ],
+              [
+                0.457803183030454,
+                32.547440712207475
+              ],
+              [
+                0.457803183031373,
+                32.54744071220753
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

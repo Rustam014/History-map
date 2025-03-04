@@ -46,7 +46,7 @@
 </head>
 <body>
     <div class="controls">
-        <input type="number" id="yearInput" value="2000" min="1946" max="2016">
+        <input type="number" id="yearInput" value="2000" min="-1001" max="2024">
         <input type="text" id="searchInput" placeholder="Search country...">
         <button onclick="updateMap()">Update Map</button>
     </div>
@@ -120,10 +120,10 @@
         async function updateMap() {
             const year = parseInt(document.getElementById('yearInput').value);
             const data = await loadData();
-            if (!data) return; // Добавляем проверку
+            if (!data) return; // Add check
             
             const filteredData = filterByYear(data, year);
-            console.log('Filtered data:', filteredData); // Добавляем отладочный вывод
+            console.log('Filtered data:', filteredData); // Add debug output
 
             if (countryLayer) {
                 map.removeLayer(countryLayer);

@@ -1,0 +1,25 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "cntry_name": "Puerto Rico",
+            "area": 9147.38,
+            "capname": "San Juan", 
+            "caplong": -66.1057, 
+            "caplat": 18.4655, 
+            "gwcode": 6, 
+            "gwsdate": "31.12.1885 23:00:00", 
+            "gwsyear": 1886, 
+            "gwsmonth": 1, 
+            "gwsday": 1, 
+            "gwedate": "08.12.1898 23:00:00", 
+            "gweyear": 1898, 
+            "gwemonth": 12, 
+            "gweday": 9, 
+            "cap_geom": "SRID=4326;POINT (-66.10569763183594 18.465499877929688)"
+        },
+        "geometry": {"type":"MultiPolygon","coordinates":[[[[102.0,0.0],[103.0,0.0],[103.0,1.0],[102.0,1.0],[102.0,0.0]]]]}
+    }
+    ]
+}

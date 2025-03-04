@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Chauhans",
+        "gwsdate": "1000-01-01T00:00:00",
+        "gwsyear": 1000,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1100-01-01T00:00:00",
+        "gweyear": 1100,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                76.30908,
+                27.04515
+              ],
+              [
+                74.1174,
+                26.54434
+              ],
+              [
+                72.62766,
+                28.36655
+              ],
+              [
+                77.06013,
+                29.42076
+              ],
+              [
+                79.85371,
+                27.97039
+              ],
+              [
+                78.55132,
+                27.63043
+              ],
+              [
+                76.30908,
+                27.04515
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

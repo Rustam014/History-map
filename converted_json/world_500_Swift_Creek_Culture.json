@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Swift Creek Culture",
+        "gwsdate": "500-01-01T00:00:00",
+        "gwsyear": 500,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "600-01-01T00:00:00",
+        "gweyear": 600,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -87.50865498991702,
+                32.822254055849356
+              ],
+              [
+                -86.99379038135059,
+                32.822254055849356
+              ],
+              [
+                -87.47382636421221,
+                32.810304320983896
+              ],
+              [
+                -87.51292622763496,
+                32.810742905002726
+              ],
+              [
+                -87.50865498991702,
+                32.822254055849356
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

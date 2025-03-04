@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Switzerland",
+        "gwsdate": "2000-01-01T00:00:00",
+        "gwsyear": 2000,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "2010-01-01T00:00:00",
+        "gweyear": 2010,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                7.284829794662926,
+                45.90903764098719
+              ],
+              [
+                7.285132,
+                45.909736
+              ],
+              [
+                7.285996212353014,
+                45.910847959679295
+              ],
+              [
+                7.284829794662926,
+                45.90903764098719
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

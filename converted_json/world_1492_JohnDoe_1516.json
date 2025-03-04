@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "JohnDoe_1516",
+        "gwsdate": "1492-01-01T00:00:00",
+        "gwsyear": 1492,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1500-01-01T00:00:00",
+        "gweyear": 1500,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -124.24902054359173,
+                47.01889380093279
+              ],
+              [
+                -124.24974421090032,
+                47.02422597454195
+              ],
+              [
+                -124.24299976664072,
+                47.02146717018578
+              ],
+              [
+                -124.24902054359173,
+                47.01889380093279
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

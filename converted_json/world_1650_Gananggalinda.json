@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Gananggalinda",
+        "gwsdate": "1650-01-01T00:00:00",
+        "gwsyear": 1650,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1700-01-01T00:00:00",
+        "gweyear": 1700,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                138.96274856041217,
+                -16.993572629731275
+              ],
+              [
+                139.04977475993894,
+                -17.057285080198167
+              ],
+              [
+                138.971557,
+                -17.041029
+              ],
+              [
+                138.9269656260152,
+                -16.98526402466409
+              ],
+              [
+                138.96274856041217,
+                -16.993572629731275
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

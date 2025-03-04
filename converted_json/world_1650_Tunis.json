@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cntry_name": "Tunis",
+        "gwsdate": "1650-01-01T00:00:00",
+        "gwsyear": 1650,
+        "gwsmonth": 1,
+        "gwsday": 1,
+        "gwedate": "1700-01-01T00:00:00",
+        "gweyear": 1700,
+        "gwemonth": 1,
+        "gweday": 1
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                8.020752939788085,
+                33.02027853579883
+              ],
+              [
+                8.770583097822632,
+                33.18925043867925
+              ],
+              [
+                8.770583097822628,
+                33.18925043867925
+              ],
+              [
+                8.020752939788085,
+                33.02027853579883
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
