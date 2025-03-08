@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Country Boundaries Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+    <script src="dataManager.js"></script>
+</head>
+<body>
+    <div class="controls">
+        <input type="number" id="yearInput" value="2000" min="-13000" max="2024">
+        <input type="text" id="searchInput" placeholder="Search country...">
+        <button id="updateButton" onclick="updateMap()">Update Map</button>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="loading" id="loading">
+        Loading data...
+    </div>
+    
+    <div class="legend">
+        <h4>Legend</h4>
+        <div>Country Borders: White lines</div>
+        <div>Click on country for details</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map = L.map('map', {
+            zoomAnimation: true,
+            wheelPxPerZoomLevel: 500,  // Even more pixels needed for zoom level change
+            wheelDebounceTime: 100,    // Longer delay for smoother feel
+            scrollWheelZoom: 'center', // Zoom towards mouse position
+            zoomDelta: 0.25,          // Smaller zoom steps
+            zoomSnap: 0.25           // Snap to smaller increments
+        }).setView([0, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        let countryLayer = null;
+        const dataManager = new DataManager();
+
+        async function loadData() {
+            return await dataManager.getData();
+        }
+
+        function filterByYear(data, year) {
+            // Create a date object for the input year (January 1st of that year)
+            const targetDate = new Date(year, 0, 1);
+
+            return {
+                type: data.type,
+                features: data.features.filter(feature => {
+                    // Create date objects for start and end dates
+                    const startDate = new Date(
+                        feature.properties.gwsyear,
+                        feature.properties.gwsmonth - 1, // JavaScript months are 0-based
+                        feature.properties.gwsday
+                    );
+                    const endDate = new Date(
+                        feature.properties.gweyear,
+                        feature.properties.gwemonth - 1,
+                        feature.properties.gweday
+                    );
+
+                    // Compare full dates instead of just years
+                    return startDate <= targetDate && endDate > targetDate;
+                })
+            };
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function style(feature) {
+            return {
+                fillColor: getRandomColor(),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: 0.7
+            };
+        }
+
+        function onEachFeature(feature, layer) {
+            if (feature.properties && feature.properties.cntry_name) {
+                layer.bindPopup(`
+                    <strong>Country:</strong> ${feature.properties.cntry_name}<br>
+                    <strong>Start Year:</strong> ${feature.properties.gwsyear}<br>
+                    <strong>End Year:</strong> ${feature.properties.gweyear}
+                `);
+            }
+        }
+
+        async function updateMap() {
+            // Store current map state
+            const currentCenter = map.getCenter();
+            const currentZoom = map.getZoom();
+
+            const year = parseInt(document.getElementById('yearInput').value);
+            const data = await loadData();
+            
+            if (!data) return;
+
+            const filteredData = filterByYear(data, year);
+
+            if (countryLayer) {
+                map.removeLayer(countryLayer);
+            }
+
+            countryLayer = L.geoJSON(filteredData, {
+                style: style,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
+            // Only fit bounds on first load
+            if (!currentCenter || !currentZoom) {
+                if (filteredData.features && filteredData.features.length > 0) {
+                    map.fitBounds(countryLayer.getBounds());
+                }
+            } else {
+                // Restore previous view
+                map.setView(currentCenter, currentZoom, {
+                    animate: false
+                });
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase();
+            if (countryLayer) {
+                countryLayer.eachLayer(layer => {
+                    const countryName = layer.feature.properties.cntry_name.toLowerCase();
+                    if (countryName.includes(searchText)) {
+                        layer.setStyle({
+                            weight: 4,
+                            color: '#ff0000'
+                        });
+                    } else {
+                        layer.setStyle(style(layer.feature));
+                    }
+                });
+            }
+        });
+
+        document.getElementById('yearInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                updateMap();
+            }
+        });
+
+        document.getElementById('updateButton').addEventListener('click', updateMap);
+
+        // Automatically click the Update Map button when the page loads
+        window.addEventListener('load', function() {
+            document.getElementById('updateButton').click();
+        });
+    </script>
+</body>
+</html>
