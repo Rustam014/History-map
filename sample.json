@@ -17,7 +17,8 @@
             "gweyear": 1898, 
             "gwemonth": 12, 
             "gweday": 9, 
-            "cap_geom": "SRID=4326;POINT (-66.10569763183594 18.465499877929688)"
+            "cap_geom": "SRID=4326;POINT (-66.10569763183594 18.465499877929688)",
+            "wikidata_id": "Q800"
         },
         "geometry": {"type":"MultiPolygon","coordinates":[[[[102.0,0.0],[103.0,0.0],[103.0,1.0],[102.0,1.0],[102.0,0.0]]]]}
     }
