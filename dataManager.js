@@ -10,7 +10,7 @@ class DataManager {
             // Get list of files from the maps directory
             let filesList;
             try {
-                const response = await fetch('./maps/');
+                const response = await fetch('./');
                 if (!response.ok) {
                     throw new Error('Failed to retrieve file list');
                 }
@@ -33,8 +33,8 @@ class DataManager {
             const allData = await Promise.all(
                 filesList.map(async (filename) => {
                     try {
-                        console.log(`Loading file: ./maps/${filename}`);
-                        const response = await fetch(`./maps/${filename}`);
+                        console.log(`Loading file: ./${filename}`);
+                        const response = await fetch(`./${filename}`);
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
