@@ -47,12 +47,114 @@
             border-radius: 5px;
             display: none;
         }
+        .year-input-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .year-nav-btn {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .year-nav-btn:hover {
+            background-color: #45a049;
+        }
+
+        #yearInput {
+            width: 80px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .contrast-control {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 30px;
+            height: 230px;
+        }
+
+        .contrast-slider {
+            width: 200px;
+            height: 10px;
+            -webkit-appearance: none;
+            background: #f0f0f0;
+            border-radius: 5px;
+            outline: none;
+            transform: rotate(-90deg);
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+        }
+
+        .contrast-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .contrast-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .contrast-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+            position: absolute;
+            bottom: 15px;
+        }
     </style>
     <script src="dataManager.js"></script>
 </head>
 <body>
     <div class="controls">
-        <input type="number" id="yearInput" value="2000" min="-13000" max="2024">
+        <div class="year-input-container">
+            <button class="year-nav-btn" onclick="changeYear(-100)">-100</button>
+            <button class="year-nav-btn" onclick="changeYear(-10)">-10</button>
+            <button class="year-nav-btn" onclick="changeYear(-1)">-1</button>
+            <input type="number" id="yearInput" value="1000" min="0" max="2024" onchange="updateYear(this.value)">
+            <button class="year-nav-btn" onclick="changeYear(1)">+1</button>
+            <button class="year-nav-btn" onclick="changeYear(10)">+10</button>
+            <button class="year-nav-btn" onclick="changeYear(100)">+100</button>
+        </div>
         <input type="text" id="searchInput" placeholder="Search country...">
         <button id="updateButton" onclick="updateMap()">Update Map</button>
     </div>
@@ -67,6 +169,17 @@
         <h4>Legend</h4>
         <div>Country Borders: White lines</div>
         <div>Click on country for details</div>
+    </div>
+
+    <div class="contrast-control">
+        <input type="range" 
+               class="contrast-slider" 
+               id="contrastSlider" 
+               min="0" 
+               max="100" 
+               value="70"
+               oninput="updateContrast(this.value)">
+        <p class="contrast-label">Contrast</p>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -116,22 +229,69 @@
             };
         }
 
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+        // Color Management System
+        const ColorManager = {
+            storageKey: 'countryColors',
+            defaultColors: {
+            },
+
+            generateColor() {
+                const hue = Math.floor(Math.random() * 360);
+                return `hsl(${hue}, 70%, 50%)`;
+            },
+
+            getColor(countryName) {
+                const colors = this.loadColors();
+                if (!colors[countryName]) {
+                    colors[countryName] = this.generateColor();
+                    this.saveColors(colors);
+                }
+                return colors[countryName];
+            },
+
+            setCustomColor(countryName, color) {
+                const colors = this.loadColors();
+                colors[countryName] = color;
+                this.saveColors(colors);
+            },
+
+            loadColors() {
+                const stored = localStorage.getItem(this.storageKey);
+                return stored ? JSON.parse(stored) : { ...this.defaultColors };
+            },
+
+            saveColors(colors) {
+                localStorage.setItem(this.storageKey, JSON.stringify(colors));
+            },
+
+            resetColors() {
+                localStorage.setItem(this.storageKey, JSON.stringify(this.defaultColors));
             }
-            return color;
+        };
+
+        let currentContrast = 0.7;
+
+        function updateContrast(value) {
+            currentContrast = value / 100;
+            if (countryLayer) {
+                countryLayer.eachLayer(layer => {
+                    const currentStyle = layer.options.style;
+                    layer.setStyle({
+                        ...currentStyle,
+                        fillOpacity: currentContrast
+                    });
+                });
+            }
         }
 
         function style(feature) {
+            const countryName = feature.properties.cntry_name;
             return {
-                fillColor: getRandomColor(),
+                fillColor: ColorManager.getColor(countryName),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                fillOpacity: 0.7
+                fillOpacity: currentContrast
             };
         }
 
@@ -208,6 +368,18 @@
         window.addEventListener('load', function() {
             document.getElementById('updateButton').click();
         });
+
+        function changeYear(delta) {
+            const yearInput = document.getElementById('yearInput');
+            const currentYear = parseInt(yearInput.value);
+            const newYear = currentYear + delta;
+            
+            // Ensure year stays within bounds
+            if (newYear >= parseInt(yearInput.min) && newYear <= parseInt(yearInput.max)) {
+                yearInput.value = newYear;
+                updateMap();
+            }
+        }
     </script>
 </body>
 </html>
