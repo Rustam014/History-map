@@ -1,93 +1,70 @@
 class DataManager {
     constructor() {
-        this.cachedData = null;
+        this.cachedData = {};
+        this.periods = [
+            { name: '12300BC_to_0', start: -123000, end: -1 },
+            { name: '1_to_1500', start: -1, end: 1500 },
+            { name: '1501_to_1800', start: 1501, end: 1800 },
+            { name: '1801_to_1900', start: 1801, end: 1900 },
+            { name: '1901_to_2024', start: 1901, end: 2024 }
+        ];
     }
 
-    async loadAllData() {
+    getPeriodForYear(year) {
+        console.log(`Finding period for year ${year}`);
+        if (year >= -1 && year <= 0) {
+            return this.periods[1];
+        }
+        const period = this.periods.find(period => 
+            year >= period.start && year <= period.end
+        );
+        console.log(`Found period:`, period);
+        return period;
+    }
+
+    async loadPeriodData(period) {
         try {
-            document.getElementById('loading').style.display = 'block';
-            
-            // Get list of files from the maps directory
-            let filesList;
-            try {
-                const response = await fetch('./');
-                if (!response.ok) {
-                    throw new Error('Failed to retrieve file list');
-                }
-                const html = await response.text();
-                // Create a temporary element for parsing HTML
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                // Get all links to .json files
-                filesList = Array.from(doc.querySelectorAll('a'))
-                    .map(a => a.href)
-                    .filter(href => href.endsWith('.json'))
-                    .map(href => href.split('/').pop());
-                console.log('File list loaded:', filesList);
-            } catch (error) {
-                console.error('Error loading file list:', error);
-                throw error;
+            console.log(`Loading data for period: ${period.name}`);
+            const response = await fetch(`./maps/${period.name}.json`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-            
-            // Load files
-            const allData = await Promise.all(
-                filesList.map(async (filename) => {
-                    try {
-                        console.log(`Loading file: ./${filename}`);
-                        const response = await fetch(`./${filename}`);
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        const data = await response.json();
-                        console.log(`File ${filename} successfully loaded:`, data);
-                        return data;
-                    } catch (error) {
-                        console.error(`Error loading ${filename}:`, error);
-                        return null;
-                    }
-                })
-            );
-
-            // Check loaded data
-            const validData = allData.filter(data => data !== null);
-            if (validData.length === 0) {
-                throw new Error('Failed to load any data files');
-            }
-
-            // Merge data
-            const mergedData = {
-                type: "FeatureCollection",
-                features: validData.flatMap(data => {
-                    if (!data.features) {
-                        console.error('Invalid data format:', data);
-                        return [];
-                    }
-                    return data.features;
-                })
-            };
-
-            console.log('Merged data:', mergedData);
-            
-            if (!mergedData.features || mergedData.features.length === 0) {
-                throw new Error('No data to display');
-            }
-
-            this.cachedData = mergedData;
-            return mergedData;
-
+            const data = await response.json();
+            console.log(`Loaded ${data.features.length} features for period ${period.name}`);
+            this.cachedData[period.name] = data;
+            return data;
         } catch (error) {
-            console.error('Error loading data:', error);
-            alert(`Error loading data: ${error.message}`);
+            console.error(`Error loading period data ${period.name}:`, error);
             return null;
-        } finally {
-            document.getElementById('loading').style.display = 'none';
         }
     }
 
-    async getData() {
-        if (!this.cachedData) {
-            return await this.loadAllData();
+    async getData(year) {
+        console.log(`Getting data for year ${year}`);
+        const period = this.getPeriodForYear(year);
+        if (!period) {
+            console.error(`No period found for year ${year}`);
+            return null;
         }
-        return this.cachedData;
+
+        if (!this.cachedData[period.name]) {
+            console.log(`Data not cached for period ${period.name}, loading...`);
+            document.getElementById('loading').style.display = 'block';
+            try {
+                const data = await this.loadPeriodData(period);
+                console.log(`Data loaded for period ${period.name}:`, data ? 'success' : 'failed');
+                return data;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        console.log(`Returning cached data for period ${period.name}`);
+        return this.cachedData[period.name];
+    }
+
+    clearCache() {
+        console.log('Clearing cache');
+        this.cachedData = {};
     }
 } 
