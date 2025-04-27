@@ -2,13 +2,12 @@
 .vscode/
 .idea/
 
-# Системные файлы
 .DS_Store
 Thumbs.db
 
-# Временные файлы
 *.log
 *.tmp
 
-# Папка node_modules если вы используете npm
 node_modules/ 
+
+maps/ 
