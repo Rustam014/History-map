@@ -17,6 +17,9 @@ function initializeMap() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
+
+    const contrastSlider = document.getElementById('contrastSlider');
+    contrastSlider.value = currentContrast * 100;
 }
 
 function filterByYear(data, year) {
@@ -75,6 +78,17 @@ function onEachFeature(feature, layer) {
     }
 }
 
+function updateContrast(value) {
+    if (!countryLayer) return;
+    
+    currentContrast = value / 100;
+    countryLayer.eachLayer(function(layer) {
+        layer.setStyle({
+            fillOpacity: currentContrast
+        });
+    });
+}
+
 async function updateMap() {
     const year = parseInt(document.getElementById('yearInput').value);
     if (isNaN(year)) {
@@ -120,15 +134,4 @@ async function updateMap() {
     } finally {
         document.getElementById('loading').style.display = 'none';
     }
-}
-
-function updateContrast(value) {
-    if (!countryLayer) return;
-    
-    const opacity = value / 100;
-    countryLayer.eachLayer(function(layer) {
-        layer.setStyle({
-            fillOpacity: opacity
-        });
-    });
 } 
