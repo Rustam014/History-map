@@ -10,4 +10,5 @@ Thumbs.db
 
 node_modules/ 
 
-maps/ 
+states_data.json
+states_data_candidates.json
