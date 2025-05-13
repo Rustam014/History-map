@@ -1,0 +1,487 @@
+{
+  "states": {
+    "Roman Republic_1": {
+      "name": "Roman Republic",
+      "start_date": -400,
+      "end_date": -323,
+      "wikidata_id": "Q17167",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Republic",
+      "boundaries_file": "12300BC_to_0_part2.json",
+      "chain_index": 1,
+      "total_in_chain": 4,
+      "previous_state": null,
+      "next_state": "Roman Republic_2",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [
+        "Q201038"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q201038"
+      ],
+      "P1366": [
+        "Q2277"
+      ],
+      "wars": [
+        "Q124988",
+        "Q3778726",
+        "Q75813",
+        "Q202161",
+        "Q596373",
+        "Q1238338",
+        "Q677316"
+      ]
+    },
+    "Roman Republic_2": {
+      "name": "Roman Republic",
+      "start_date": -300,
+      "end_date": -200,
+      "wikidata_id": "Q17167",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Republic",
+      "boundaries_file": "12300BC_to_0_part2.json",
+      "chain_index": 2,
+      "total_in_chain": 4,
+      "previous_state": "Roman Republic_1",
+      "next_state": "Roman Republic_3",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [
+        "Q201038"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q201038"
+      ],
+      "P1366": [
+        "Q2277"
+      ],
+      "wars": [
+        "Q124988",
+        "Q3778726",
+        "Q75813",
+        "Q202161",
+        "Q596373",
+        "Q1238338",
+        "Q677316"
+      ]
+    },
+    "Roman Republic_3": {
+      "name": "Roman Republic",
+      "start_date": -100,
+      "end_date": -1,
+      "wikidata_id": "Q17167",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Republic",
+      "boundaries_file": "12300BC_to_0_part1.json",
+      "chain_index": 3,
+      "total_in_chain": 4,
+      "previous_state": "Roman Republic_2",
+      "next_state": "Roman Republic_4",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [
+        "Q201038"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q201038"
+      ],
+      "P1366": [
+        "Q2277"
+      ],
+      "wars": [
+        "Q124988",
+        "Q3778726",
+        "Q75813",
+        "Q202161",
+        "Q596373",
+        "Q1238338",
+        "Q677316"
+      ]
+    },
+    "Roman Republic_4": {
+      "name": "Roman Republic",
+      "start_date": -100,
+      "end_date": -1,
+      "wikidata_id": "Q17167",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Republic",
+      "boundaries_file": "12300BC_to_0_part1.json",
+      "chain_index": 4,
+      "total_in_chain": 4,
+      "previous_state": "Roman Republic_3",
+      "next_state": null,
+      "predecessor_keys": [],
+      "successor_keys": [
+        "Roman Empire_1",
+        "Roman Empire_2",
+        "Roman Empire_3",
+        "Roman Empire_4"
+      ],
+      "P155": [
+        "Q201038"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q201038"
+      ],
+      "P1366": [
+        "Q2277"
+      ],
+      "wars": [
+        "Q124988",
+        "Q3778726",
+        "Q75813",
+        "Q202161",
+        "Q596373",
+        "Q1238338",
+        "Q677316"
+      ]
+    },
+    "Visigoths_1": {
+      "name": "Visigoths",
+      "start_date": 400,
+      "end_date": 500,
+      "wikidata_id": "Q23693",
+      "wikipedia": "https://en.wikipedia.org/wiki/Visigoths",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 1,
+      "total_in_chain": 2,
+      "previous_state": null,
+      "next_state": "Visigoths_2",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [],
+      "P156": [],
+      "P1365": [],
+      "P1366": [],
+      "wars": []
+    },
+    "Visigoths_2": {
+      "name": "Visigoths",
+      "start_date": 500,
+      "end_date": 600,
+      "wikidata_id": "Q23693",
+      "wikipedia": "https://en.wikipedia.org/wiki/Visigoths",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 2,
+      "total_in_chain": 2,
+      "previous_state": "Visigoths_1",
+      "next_state": null,
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [],
+      "P156": [],
+      "P1365": [],
+      "P1366": [],
+      "wars": []
+    },
+    "Western Roman Empire_1": {
+      "name": "Western Roman Empire",
+      "start_date": 400,
+      "end_date": 500,
+      "wikidata_id": "Q42834",
+      "wikipedia": "https://en.wikipedia.org/wiki/Western%20Roman%20Empire",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 1,
+      "total_in_chain": 3,
+      "previous_state": null,
+      "next_state": "Western Roman Empire_2",
+      "predecessor_keys": [
+        "Roman Empire_1",
+        "Roman Empire_2",
+        "Roman Empire_3",
+        "Roman Empire_4"
+      ],
+      "successor_keys": [],
+      "P155": [],
+      "P156": [],
+      "P1365": [
+        "Q2277"
+      ],
+      "P1366": [
+        "Q146246",
+        "Q3755547",
+        "Q3307686",
+        "Q12544",
+        "Q1048918",
+        "Q10416611",
+        "Q13590051",
+        "Q1247508",
+        "Q25080783",
+        "Q2208978",
+        "Q641203",
+        "Q977566"
+      ],
+      "wars": [
+        "Q81653428",
+        "Q3625654"
+      ]
+    },
+    "Western Roman Empire_2": {
+      "name": "Western Roman Empire",
+      "start_date": 500,
+      "end_date": 600,
+      "wikidata_id": "Q42834",
+      "wikipedia": "https://en.wikipedia.org/wiki/Western%20Roman%20Empire",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 2,
+      "total_in_chain": 3,
+      "previous_state": "Western Roman Empire_1",
+      "next_state": "Western Roman Empire_3",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [],
+      "P156": [],
+      "P1365": [
+        "Q2277"
+      ],
+      "P1366": [
+        "Q146246",
+        "Q3755547",
+        "Q3307686",
+        "Q12544",
+        "Q1048918",
+        "Q10416611",
+        "Q13590051",
+        "Q1247508",
+        "Q25080783",
+        "Q2208978",
+        "Q641203",
+        "Q977566"
+      ],
+      "wars": [
+        "Q81653428",
+        "Q3625654"
+      ]
+    },
+    "Western Roman Empire_3": {
+      "name": "Western Roman Empire",
+      "start_date": 500,
+      "end_date": 600,
+      "wikidata_id": "Q42834",
+      "wikipedia": "https://en.wikipedia.org/wiki/Western%20Roman%20Empire",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 3,
+      "total_in_chain": 3,
+      "previous_state": "Western Roman Empire_2",
+      "next_state": null,
+      "predecessor_keys": [],
+      "successor_keys": [
+        "Frankish Kingdom_1",
+        "Frankish Kingdom_2",
+        "Frankish Kingdom_3",
+        "Byzantine Empire_1",
+        "Byzantine Empire_2",
+        "Byzantine Empire_3",
+        "Byzantine Empire_4",
+        "Byzantine Empire_5",
+        "Byzantine Empire_6",
+        "Byzantine Empire_7",
+        "Byzantine Empire_8",
+        "Byzantine Empire_9",
+        "Eastern Roman Empire_1",
+        "Eastern Roman Empire_2",
+        "Eastern Roman Empire_3",
+        "Eastern Roman Empire_4"
+      ],
+      "P155": [],
+      "P156": [],
+      "P1365": [
+        "Q2277"
+      ],
+      "P1366": [
+        "Q146246",
+        "Q3755547",
+        "Q3307686",
+        "Q12544",
+        "Q1048918",
+        "Q10416611",
+        "Q13590051",
+        "Q1247508",
+        "Q25080783",
+        "Q2208978",
+        "Q641203",
+        "Q977566"
+      ],
+      "wars": [
+        "Q81653428",
+        "Q3625654"
+      ]
+    },
+    "Cheras_1": {
+      "name": "Cheras",
+      "start_date": 500,
+      "end_date": 600,
+      "wikidata_id": "Q877155",
+      "wikipedia": "https://en.wikipedia.org/wiki/Chera%20dynasty",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 1,
+      "total_in_chain": 2,
+      "previous_state": null,
+      "next_state": "Cheras_2",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [],
+      "P156": [],
+      "P1365": [],
+      "P1366": [
+        "Q150056",
+        "Q3532158",
+        "Q2122988"
+      ],
+      "wars": []
+    },
+    "Cheras_2": {
+      "name": "Cheras",
+      "start_date": 700,
+      "end_date": 800,
+      "wikidata_id": "Q877155",
+      "wikipedia": "https://en.wikipedia.org/wiki/Chera%20dynasty",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 2,
+      "total_in_chain": 2,
+      "previous_state": "Cheras_1",
+      "next_state": null,
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [],
+      "P156": [],
+      "P1365": [],
+      "P1366": [
+        "Q150056",
+        "Q3532158",
+        "Q2122988"
+      ],
+      "wars": []
+    },
+    "Roman Empire_1": {
+      "name": "Roman Empire",
+      "start_date": -1,
+      "end_date": 100,
+      "wikidata_id": "Q2277",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Empire",
+      "boundaries_file": "12300BC_to_0_part1.json",
+      "chain_index": 1,
+      "total_in_chain": 4,
+      "previous_state": null,
+      "next_state": "Roman Empire_2",
+      "predecessor_keys": [
+        "Roman Republic_1",
+        "Roman Republic_2",
+        "Roman Republic_3",
+        "Roman Republic_4",
+        "Rome_1",
+        "Rome_2",
+        "Rome_3"
+      ],
+      "successor_keys": [],
+      "P155": [
+        "Q428995"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q17167"
+      ],
+      "P1366": [
+        "Q42834",
+        "Q12544"
+      ],
+      "wars": []
+    },
+    "Roman Empire_2": {
+      "name": "Roman Empire",
+      "start_date": -1,
+      "end_date": 100,
+      "wikidata_id": "Q2277",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Empire",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 2,
+      "total_in_chain": 4,
+      "previous_state": "Roman Empire_1",
+      "next_state": "Roman Empire_3",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [
+        "Q428995"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q17167"
+      ],
+      "P1366": [
+        "Q42834",
+        "Q12544"
+      ],
+      "wars": []
+    },
+    "Roman Empire_3": {
+      "name": "Roman Empire",
+      "start_date": 100,
+      "end_date": 200,
+      "wikidata_id": "Q2277",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Empire",
+      "boundaries_file": "1_to_1500_part1.json",
+      "chain_index": 3,
+      "total_in_chain": 4,
+      "previous_state": "Roman Empire_2",
+      "next_state": "Roman Empire_4",
+      "predecessor_keys": [],
+      "successor_keys": [],
+      "P155": [
+        "Q428995"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q17167"
+      ],
+      "P1366": [
+        "Q42834",
+        "Q12544"
+      ],
+      "wars": []
+    },
+    "Roman Empire_4": {
+      "name": "Roman Empire",
+      "start_date": 200,
+      "end_date": 300,
+      "wikidata_id": "Q2277",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman%20Empire",
+      "boundaries_file": "1_to_1500_part3.json",
+      "chain_index": 4,
+      "total_in_chain": 4,
+      "previous_state": "Roman Empire_3",
+      "next_state": null,
+      "predecessor_keys": [],
+      "successor_keys": [
+        "Western Roman Empire_1",
+        "Western Roman Empire_2",
+        "Western Roman Empire_3",
+        "Byzantine Empire_1",
+        "Byzantine Empire_2",
+        "Byzantine Empire_3",
+        "Byzantine Empire_4",
+        "Byzantine Empire_5",
+        "Byzantine Empire_6",
+        "Byzantine Empire_7",
+        "Byzantine Empire_8",
+        "Byzantine Empire_9",
+        "Eastern Roman Empire_1",
+        "Eastern Roman Empire_2",
+        "Eastern Roman Empire_3",
+        "Eastern Roman Empire_4"
+      ],
+      "P155": [
+        "Q428995"
+      ],
+      "P156": [],
+      "P1365": [
+        "Q17167"
+      ],
+      "P1366": [
+        "Q42834",
+        "Q12544"
+      ],
+      "wars": []
+    }
+  }
+}

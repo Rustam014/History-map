@@ -2,11 +2,16 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 #map {
     height: 100%;
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .controls {
@@ -138,4 +143,35 @@ html, body {
     white-space: nowrap;
     position: absolute;
     bottom: 15px;
+}
+
+.country-info-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+    background: white;
+    z-index: 3000;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+    padding: 24px 20px 20px 20px;
+    overflow-y: auto;
+    border-right: 2px solid #ddd;
+    transition: left 0.3s;
+    display: none;
+    box-sizing: border-box;
+    max-height: 100vh;
+}
+
+#close-country-info {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+#country-info-content h3 {
+    margin-top: 0;
 } 

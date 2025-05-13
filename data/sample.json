@@ -1,0 +1,28 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "cntry_name": "Puerto Rico",
+            "gwsdate": "31.12.1885 23:00:00", 
+            "gwsyear": 1886, 
+            "gwsmonth": 1, 
+            "gwsday": 1, 
+            "gwedate": "08.12.1898 23:00:00", 
+            "gweyear": 1898, 
+            "gwemonth": 12, 
+            "gweday": 9,
+            "wikidata_id": "Q800",
+            "wikipedia": "https://en.wikipedia.org/wiki/Aboriginal%20Tasmanians",
+            "predecessor_keys": [],
+            "successor_keys": [],
+            "P155": [],
+            "P156": [],
+            "P1365": [],
+            "P1366": [],
+            "wars": []
+        },
+        "geometry": {"type":"MultiPolygon","coordinates":[[[[102.0,0.0],[103.0,0.0],[103.0,1.0],[102.0,1.0],[102.0,0.0]]]]}
+    }
+    ]
+}

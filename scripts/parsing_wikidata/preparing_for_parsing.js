@@ -3,7 +3,7 @@ const path = require('path');
 
 // Paths
 const mapsDir = path.join(__dirname, '..', 'maps');
-const outputFile = path.join(__dirname, '..', 'states_data.json');
+const outputFile = path.join(__dirname, '..', './data/states_data.json');
 
 function createStateEntry(properties, file) {
     return {

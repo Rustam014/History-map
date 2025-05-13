@@ -1,9 +1,9 @@
 const fs = require('fs');
 const axios = require('axios');
 
-const INPUT_FILE = 'states_data.json';
-const OUTPUT_FILE = 'states_data_candidates.json';
-const START_FROM = 'Aboriginal Tasmanians_1';
+const INPUT_FILE = './data/states_data.json';
+const OUTPUT_FILE = './data/states_data_candidates.json';
+const START_FROM = 'Kazakhstan_1';
 const WIKIDATA_API = 'https://www.wikidata.org/w/api.php';
 
 const ALLOWED_P31 = new Set([
@@ -135,7 +135,7 @@ async function fetchCandidates(stateName, inputStart, inputEnd) {
       inception: wikiStart,
       dissolution: wikiEnd,
       p31_types: Array.from(p31Set),
-      score: dateScore + (isValid ? 2 : 0)
+      score: dateScore + (isValid ? 5 : 0)
     });
   }
 
