@@ -48,7 +48,6 @@ async function process() {
   const processedWars = new Set(Object.keys(output.wars));
   const processedWikidataIds = new Set(output.processedWikidataIds);
 
-  // Собираем все уникальные wikidata_id
   const stateEntries = Object.entries(input.states);
   const idToKeys = {};
 
@@ -67,13 +66,13 @@ async function process() {
       if (!input.states[k].wars) input.states[k].wars = [];
     });
 
-    console.log(`Обрабатываю ${id} (${relatedKeys.length} записей)`);
+    console.log(`Processing ${id} (${relatedKeys.length} records)`);
 
     let entity;
     try {
       entity = await fetchEntity(id);
     } catch (err) {
-      console.error(`Ошибка загрузки ${id}: ${err.message}`);
+      console.error(`Error loading ${id}: ${err.message}`);
       continue;
     }
 
@@ -84,7 +83,6 @@ async function process() {
 
     for (const conflictId of potentialConflictIds) {
       if (processedWars.has(conflictId)) {
-        // Привязываем к каждому state
         relatedKeys.forEach(k => {
           const s = input.states[k];
           if (!s.wars.includes(conflictId)) s.wars.push(conflictId);
@@ -99,7 +97,7 @@ async function process() {
       try {
         warEntity = await fetchEntity(conflictId);
       } catch (err) {
-        console.warn(`Ошибка загрузки события ${conflictId}: ${err.message}`);
+        console.warn(`Error loading event ${conflictId}: ${err.message}`);
         continue;
       }
 
@@ -107,7 +105,7 @@ async function process() {
       const isWar = conflictTypes.some(t => ALLOWED_WAR_TYPES.has(t));
       if (!isWar) continue;
 
-      const label = warEntity.labels?.en?.value || '(без названия)';
+      const label = warEntity.labels?.en?.value || '(no name)';
       const startDate = getDate(warEntity, 'P580');
       const endDate = getDate(warEntity, 'P582');
       const result = warEntity.claims?.P1346?.[0]?.mainsnak?.datavalue?.value?.id || null;
@@ -133,7 +131,7 @@ async function process() {
 
       processedWars.add(conflictId);
 
-      console.log(`Найдена война: ${label}`);
+      console.log(`Found war: ${label}`);
 
       fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
       fs.writeFileSync(INPUT_FILE, JSON.stringify(input, null, 2));
@@ -146,7 +144,7 @@ async function process() {
     fs.writeFileSync(INPUT_FILE, JSON.stringify(input, null, 2));
   }
 
-  console.log(`Готово. Данные сохранены в ${OUTPUT_FILE}`);
+  console.log(`Done. Data saved to ${OUTPUT_FILE}`);
 }
 
 process();

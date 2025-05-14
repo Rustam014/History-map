@@ -7,7 +7,6 @@ const unmatchedOutputPath = '../data/unmatched_states.json';
 
 const fieldsToCopy = ['wikidata_id', 'wikipedia', 'P155', 'P156', 'P1365', 'P1366', 'wars'];
 
-// Загрузка данных о государствах
 function loadStates(callback) {
     fs.readFile(statesFilePath, 'utf8', (err, data) => {
         if (err) return callback(err);
@@ -16,13 +15,12 @@ function loadStates(callback) {
     });
 }
 
-// Основная обработка
 function processMaps(states) {
-    const unmatchedStates = new Set(Object.keys(states)); // изначально считаем, что все — необработаны
+    const unmatchedStates = new Set(Object.keys(states));
 
     fs.readdir(mapsDirectoryPath, (err, files) => {
         if (err) {
-            console.error('Ошибка при чтении папки maps:', err);
+            console.error('Error reading maps directory:', err);
             return;
         }
 
@@ -33,7 +31,7 @@ function processMaps(states) {
 
             fs.readFile(fullPath, 'utf8', (err, data) => {
                 if (err) {
-                    console.error(`Ошибка при чтении файла ${file}:`, err);
+                    console.error(`Error reading file ${file}:`, err);
                     return;
                 }
 
@@ -43,7 +41,7 @@ function processMaps(states) {
                 try {
                     mapData = JSON.parse(data);
                 } catch (parseErr) {
-                    console.error(`Ошибка при разборе JSON в файле ${file}:`, parseErr);
+                    console.error(`Error parsing JSON in file ${file}:`, parseErr);
                     return;
                 }
 
@@ -72,13 +70,12 @@ function processMaps(states) {
                             }
 
                             if (changed) {
-                                console.log(`Добавлены поля в "${countryName}" (${startDate}–${endDate}) в файле ${file}`);
+                                console.log(`Added fields to "${countryName}" (${startDate}–${endDate}) in file ${file}`);
                                 modified = true;
                             }
 
-                            // Помечаем это состояние как обработанное
                             unmatchedStates.delete(stateKey);
-                            break; // Не продолжаем поиск по другим state
+                            break; 
                         }
                     }
                 }
@@ -86,14 +83,13 @@ function processMaps(states) {
                 if (modified) {
                     fs.writeFile(fullPath, JSON.stringify(mapData, null, 2), 'utf8', (err) => {
                         if (err) {
-                            console.error(`Ошибка при сохранении файла ${file}:`, err);
+                            console.error(`Error saving file ${file}:`, err);
                         } else {
-                            console.log(`✅ Файл обновлён: ${file}`);
+                            console.log(`File updated: ${file}`);
                         }
                     });
                 }
 
-                // После обработки всех файлов — сохраняем unmatched
                 if (file === jsonFiles[jsonFiles.length - 1]) {
                     const unmatchedData = {};
                     for (const key of unmatchedStates) {
@@ -102,9 +98,9 @@ function processMaps(states) {
 
                     fs.writeFile(unmatchedOutputPath, JSON.stringify(unmatchedData, null, 2), 'utf8', (err) => {
                         if (err) {
-                            console.error('Ошибка при сохранении unmatched_states.json:', err);
+                            console.error('Error saving unmatched_states.json:', err);
                         } else {
-                            console.log(`📄 Список необработанных государств сохранён в ${unmatchedOutputPath}`);
+                            console.log(`List of unprocessed states saved to ${unmatchedOutputPath}`);
                         }
                     });
                 }
@@ -113,10 +109,9 @@ function processMaps(states) {
     });
 }
 
-// Запуск
 loadStates((err, states) => {
     if (err) {
-        console.error('Ошибка при загрузке states_with_lineage:', err);
+        console.error('Error loading states_with_lineage:', err);
         return;
     }
 

@@ -46,6 +46,8 @@ html, body {
     padding: 20px;
     border-radius: 5px;
     display: none;
+    color: #666;
+    font-style: italic;
 }
 
 .year-input-container {
@@ -174,4 +176,66 @@ html, body {
 
 #country-info-content h3 {
     margin-top: 0;
+}
+
+.state-relations {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.state-relations h4 {
+    margin: 0 0 5px 0;
+    color: #fff;
+}
+
+.state-relations .predecessors,
+.state-relations .successors {
+    margin-bottom: 10px;
+}
+
+.state-relations ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.state-relations li {
+    margin-bottom: 5px;
+}
+
+.state-relations a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.state-relations a:hover {
+    text-decoration: underline;
+}
+
+.predecessors h4 {
+    color: #fff;
+}
+
+.successors h4 {
+    color: #fff;
+}
+
+.predecessors a {
+    color: #0066cc;
+}
+
+.predecessors a:hover {
+    color: #0052a3;
+}
+
+.successors a {
+    color: #0066cc;
+}
+
+.successors a:hover {
+    color: #0052a3;
+}
+
+.error {
+    color: #d32f2f;
+    font-style: italic;
 } 

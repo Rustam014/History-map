@@ -134,7 +134,7 @@ function onEachFeature(feature, layer) {
             ${warsBlock}
         `;
 
-        layer.on('click', function(e) {
+        layer.on('click', async function(e) {
             try {
                 console.log('Country clicked:', properties.cntry_name);
                 const panel = document.getElementById('country-info-panel');
@@ -144,6 +144,7 @@ function onEachFeature(feature, layer) {
                     return;
                 }
                 content.innerHTML = infoContent;
+                await StateRelations.addToInfoPanel(properties);
                 panel.style.display = 'block';
                 if (layer.closePopup) layer.closePopup();
                 if (layer.bringToFront) layer.bringToFront();
@@ -214,7 +215,6 @@ async function updateMap() {
     }
 }
 
-// Добавляю обработчик для закрытия панели
 if (typeof window !== 'undefined') {
     window.addEventListener('DOMContentLoaded', function() {
         const closeBtn = document.getElementById('close-country-info');
