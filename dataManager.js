@@ -60,6 +60,10 @@ class DataManager {
                 }
                 
                 const data = await response.json();
+                console.log(`Loaded data for ${period.name}_part${i}:`, {
+                    featureCount: data.features.length,
+                    sampleFeature: data.features[0]?.properties
+                });
                 allFeatures = allFeatures.concat(data.features);
             }
 
@@ -163,8 +167,6 @@ class DataManager {
             loading: true
         };
 
-        this.updateUI(relations);
-
         try {
             const currentState = await this.findStateDate(wikidataId, currentYear, false);
             if (!currentState) {
@@ -177,6 +179,8 @@ class DataManager {
                 ...(currentState.properties.P155 || []),
                 ...(currentState.properties.P1365 || [])
             ];
+            
+            console.log('Predecessor IDs:', predecessorIds);
             
             for (const id of predecessorIds) {
                 const predecessor = await this.findStateDate(id, currentYear, false);
@@ -193,6 +197,8 @@ class DataManager {
                 ...(currentState.properties.P156 || []),
                 ...(currentState.properties.P1366 || [])
             ];
+            
+            console.log('Successor IDs:', successorIds);
             
             for (const id of successorIds) {
                 const successor = await this.findStateDate(id, currentYear, true);
@@ -213,56 +219,5 @@ class DataManager {
         }
 
         return relations;
-    }
-
-    updateUI(relations) {
-        if (relations.loading) {
-            return `
-                <div class="state-relations">
-                    <div class="loading">Loading state relations...</div>
-                </div>
-            `;
-        }
-
-        if (relations.error) {
-            return `
-                <div class="state-relations">
-                    <div class="error">Error loading state relations</div>
-                </div>
-            `;
-        }
-
-        const predecessors = relations.predecessors.length > 0 
-            ? `<div class="predecessors">
-                <h4>Predecessors:</h4>
-                <ul>${relations.predecessors.map(state => 
-                    `<li>
-                        <a href="#" onclick="updateMapToState('${state.id}', ${state.year})">
-                            ${state.name} (${state.year})
-                        </a>
-                    </li>`
-                ).join('')}</ul>
-               </div>`
-            : '';
-
-        const successors = relations.successors.length > 0
-            ? `<div class="successors">
-                <h4>Successors:</h4>
-                <ul>${relations.successors.map(state => 
-                    `<li>
-                        <a href="#" onclick="updateMapToState('${state.id}', ${state.year})">
-                            ${state.name} (${state.year})
-                        </a>
-                    </li>`
-                ).join('')}</ul>
-               </div>`
-            : '';
-
-        return `
-            <div class="state-relations">
-                ${predecessors}
-                ${successors}
-            </div>
-        `;
     }
 } 

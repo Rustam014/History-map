@@ -14,16 +14,16 @@
 <body>
     <div class="controls">
         <div class="year-input-container">
-            <button class="year-nav-btn" onclick="changeYear(-100)">-100</button>
-            <button class="year-nav-btn" onclick="changeYear(-10)">-10</button>
-            <button class="year-nav-btn" onclick="changeYear(-1)">-1</button>
-            <input type="number" id="yearInput" value="1000" min="0" max="2024" onchange="updateYear(this.value)">
-            <button class="year-nav-btn" onclick="changeYear(1)">+1</button>
-            <button class="year-nav-btn" onclick="changeYear(10)">+10</button>
-            <button class="year-nav-btn" onclick="changeYear(100)">+100</button>
+            <button class="year-nav-btn" onclick="eventHandlers.changeYear(-100)">-100</button>
+            <button class="year-nav-btn" onclick="eventHandlers.changeYear(-10)">-10</button>
+            <button class="year-nav-btn" onclick="eventHandlers.changeYear(-1)">-1</button>
+            <input type="number" id="yearInput" value="1000" min="0" max="2024" onchange="eventHandlers.updateYear(this.value)">
+            <button class="year-nav-btn" onclick="eventHandlers.changeYear(1)">+1</button>
+            <button class="year-nav-btn" onclick="eventHandlers.changeYear(10)">+10</button>
+            <button class="year-nav-btn" onclick="eventHandlers.changeYear(100)">+100</button>
         </div>
         <input type="text" id="searchInput" placeholder="Search country...">
-        <button id="updateButton" onclick="updateMap()">Update Map</button>
+        <button id="updateButton" onclick="mapManager.updateMap()">Update Map</button>
     </div>
     
     <div id="map"></div>
@@ -44,26 +44,32 @@
                min="0" 
                max="100" 
                value="70"
-               oninput="updateContrast(this.value)">
+               oninput="mapManager.updateContrast(this.value)">
         <p class="contrast-label">Contrast</p>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="dataManager.js"></script>
     <script src="colorManager.js"></script>
+    <script src="stateRelations.js"></script>
+    <script src="countryInfoView.js"></script>
     <script src="mapManager.js"></script>
     <script src="eventHandlers.js"></script>
-    <script src="stateRelations.js"></script>
     <script>
         window.onerror = function(msg, url, line) {
             console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + line);
-            document.getElementById('loading').textContent = 'Error loading the application. Please refresh the page.';
+            document.getElementById('loading').textContent = 'Loading data... Please wait.';
             return true;
         };
 
+        // Make these variables globally accessible
+        window.mapManager = null;
+        window.eventHandlers = null;
+
         document.addEventListener('DOMContentLoaded', function() {
-            initializeMap();
-            initializeEventHandlers();
+            window.mapManager = new MapManager();
+            window.mapManager.initializeMap();
+            window.eventHandlers = new EventHandlers(window.mapManager);
         });
     </script>
 </body>

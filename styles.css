@@ -178,14 +178,22 @@ html, body {
     margin-top: 0;
 }
 
+#country-info-content h4 {
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
 .state-relations {
     margin-top: 15px;
     padding: 10px;
 }
 
-.state-relations h4 {
+/* Добавляем более специфичный селектор */
+#country-info-content .state-relations h4,
+#country-info-content .state-relations .predecessors h4,
+#country-info-content .state-relations .successors h4 {
     margin: 0 0 5px 0;
-    color: #fff;
+    color: #333 !important;
 }
 
 .state-relations .predecessors,
@@ -205,34 +213,33 @@ html, body {
 .state-relations a {
     color: #0066cc;
     text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 .state-relations a:hover {
+    color: #0052a3;
     text-decoration: underline;
 }
 
-.predecessors h4 {
-    color: #fff;
-}
-
-.successors h4 {
-    color: #fff;
-}
-
-.predecessors a {
+.state-relations .predecessors a,
+.state-relations .successors a {
     color: #0066cc;
 }
 
-.predecessors a:hover {
+.state-relations .predecessors a:hover,
+.state-relations .successors a:hover {
     color: #0052a3;
 }
 
-.successors a {
-    color: #0066cc;
-}
-
-.successors a:hover {
-    color: #0052a3;
+.state-relations .no-relations {
+    color: #666;
+    font-style: italic;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    text-align: center;
 }
 
 .error {

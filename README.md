@@ -9,7 +9,7 @@ A project for visualizing historical maps using data from Wikidata. The applicat
 
 ## Requirements
 
-- Modern web browser (Chrome, Firefox, Safari, or Edge)
+- Modern web browser (Chrome, Firefox or Edge)
 - Python 3.x (for running the server)
 - Node.js (version 14 or higher) - for data processing scripts
 
@@ -29,7 +29,7 @@ http://localhost:8000/Historic Map.html
 
 ## Data Format
 
-Data is stored in GeoJSON format with the following structure:
+Data is stored in JSON format with the following structure:
 - Geometric data of state boundaries
 - Properties:
   - Country name
